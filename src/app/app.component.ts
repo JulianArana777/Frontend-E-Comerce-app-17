@@ -4,25 +4,19 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NavBarComponent } from "./core/nav-bar/nav-bar.component";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { Ipagination } from './Models/Ipagination';
-import { Iproduct } from './Models/ProductDTO';
+import { ShopComponent } from "./shop/shop.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ModalModule, NavBarComponent, HttpClientModule, CommonModule,],
+  imports: [RouterOutlet, ModalModule, NavBarComponent, HttpClientModule, CommonModule, ShopComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
   title = 'Client';
-  products: Iproduct[] = [];
-  constructor(private http:HttpClient){}
+  
+  constructor(){}
   ngOnInit(): void {
-    this.http.get<Ipagination>("http://localhost:5079/api/product?PageSize=50").subscribe( (response: Ipagination) => {
-      this.products=response.data;
-    }, error => {
-      console.log(error);
-    } );    
   }
   
 }
