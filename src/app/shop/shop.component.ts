@@ -20,16 +20,39 @@ export class ShopComponent implements OnInit {
   products:Iproduct[]=[];
   brands:BrandsDTO[]=[];
   types:TypeDTO[]=[];
+  BrandId?:number;
+  TypeId?:number;
   
   constructor(private shopservice:ShopService){
 
   }
 
   ngOnInit() {
-    this.shopservice.getProducts().subscribe( response => {this.products = response.data},error => console.log("error"));
-    this.shopservice.getBrands().subscribe(response => {this.brands = response},error => console.log("error"));
-    this.shopservice.getTypes().subscribe(response => {this.types = response},error => console.log("error"));
     
+    this.getProducts();
+    this.getBrands();
+    this.getTypes();
+    
+    
+    
+  }
+
+  getProducts =()=>{
+    this.shopservice.getProducts(this.BrandId,this.TypeId).subscribe( response => {this.products = response.data},error => console.log("error"));
+  }
+  getBrands = () =>{
+    this.shopservice.getBrands().subscribe(response => {this.brands = [{id:0, name:"ALL"},...response]},error => console.log("error"));
+  }
+  getTypes = () =>{
+    this.shopservice.getTypes().subscribe(response => {this.types = [{id:0, name:"ALL"},...response]},error => console.log("error"));
+  }
+  onBrandSelected = (id:number) =>{
+    this.BrandId = id;
+    this.getProducts();
+  }
+    onTypeSelected = (id:number) =>{
+    this.TypeId= id;
+    this.getProducts();
   }
 
 
