@@ -8,20 +8,14 @@
                 <option >Price: High to Low </option>
             </select>
             <h5 class="text-warning ml-3 my-3">Brands</h5>
-            <ul class="list-group my-3">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">A fourth item</li>
-                <li class="list-group-item">And a fifth one</li>
+            <ul class="list-group my-3" >
+                <li class="list-group-item" *ngFor="let bra of brands">{{bra.name}}</li>
+              
             </ul>
             <h5 class="text-warning ml-3 my-3">Types</h5>
-            <ul class="list-group my-3">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">A fourth item</li>
-                <li class="list-group-item">And a fifth one</li>
+            <ul class="list-group my-3" >
+                <li class="list-group-item" *ngFor="let type of types">{{type.name}}</li>
+               
             </ul>
         </section>
         <section class="col-9">
