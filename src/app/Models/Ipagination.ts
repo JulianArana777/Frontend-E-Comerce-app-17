@@ -1,7 +1,7 @@
 interface Datum {
    id:number;
     name:string;
-    descritpion:string;
+    description:string;
     price:number;
     pictureurl:string;
     producttype:string;
