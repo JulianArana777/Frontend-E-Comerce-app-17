@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { NavBarComponent } from "./nav-bar/nav-bar.component";
+import { NavBarComponent } from "./core/nav-bar/nav-bar.component";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Ipagination } from './Models/Ipagination';
