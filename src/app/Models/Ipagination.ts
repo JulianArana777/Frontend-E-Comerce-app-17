@@ -12,6 +12,6 @@ interface Datum {
 export interface Ipagination{
     PageIndex:number;
     PageSize:number;
-    cont:number;
+    count:number;
     data:Datum[];
 }

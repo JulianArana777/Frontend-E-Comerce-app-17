@@ -4,6 +4,7 @@ import { Ipagination } from '../Models/Ipagination';
 import { BrandsDTO } from '../Models/Brands';
 import { TypeDTO } from '../Models/Type';
 import { map } from 'rxjs';
+import { ShopParams } from '../Models/ShopParams';
 
 @Injectable({
   providedIn: 'root'
@@ -14,18 +15,21 @@ export class ShopService {
 
   }
 
-  getProducts = (brand?: number, type?: number, sort?:string) => {
+  getProducts = (shopparams:ShopParams) => {
 
     let params = new HttpParams();
-    if (brand) {
-      params = params.append("brand", brand.toString())
+    if (shopparams.brand) {
+      params = params.append("brand", shopparams.brand.toString())
     }
-    if (type) {
-      params = params.append("type", type.toString())
+    if (shopparams.type) {
+      params = params.append("type", shopparams.type.toString())
     }
-    if(sort){
-      params = params.append("sort",sort);
+    if(shopparams.sort){
+      params = params.append("sort",shopparams.sort);
     }
+    params = params.append("PageIndex",shopparams.PageNumber.toString());
+    params=params.append("PageSize",shopparams.PageSize.toString());
+    
     return this.http.get<Ipagination>(
       this.baseUrl + 'product',
       {

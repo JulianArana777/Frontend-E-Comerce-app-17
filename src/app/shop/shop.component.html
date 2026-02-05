@@ -2,8 +2,8 @@
     <div class="row">
         <section class="col-3">
             <h5 class="text-warning ml-3 my-3">Sort</h5>
-           
-             <select class="custom-select mb-3" (change)="onSortSelected($event.target.value)">
+
+            <select class="custom-select mb-3" (change)="onSortSelected($event.target.value)">
 
                 <option *ngFor="let sort of SortOptions" [value]="sort.value">
                     {{ sort.name }}
@@ -12,7 +12,7 @@
             </select>
             <h5 class="text-warning ml-3 my-3">Brands</h5>
             <ul class="list-group my-3">
-                <li class="list-group-item" *ngFor="let bra of brands" [class.active]="bra.id === BrandId"
+                <li class="list-group-item" *ngFor="let bra of brands" [class.active]="bra.id === ShopParams.brand"
                     (click)="onBrandSelected(bra.id)" role="button">
                     {{ bra.name }}
                 </li>
@@ -21,7 +21,7 @@
             </ul>
             <h5 class="text-warning ml-3 my-3">Types</h5>
             <ul class="list-group my-3">
-                <li class="list-group-item" *ngFor="let Type of types" [class.active]="Type.id === TypeId"
+                <li class="list-group-item" *ngFor="let Type of types" [class.active]="Type.id === ShopParams.type"
                     (click)="onTypeSelected(Type.id)" role="button">
                     {{ Type.name }}
                 </li>
@@ -50,6 +50,9 @@
 
                 </div>
             </div>
+            <pagination [totalItems]="this.totalCount" [itemsPerPage]="ShopParams.PageSize" 
+                [boundaryLinks]="true" [rotate]="true" (pageChanged)="onPageChange($event)">
+            </pagination>
         </section>
     </div>
 
