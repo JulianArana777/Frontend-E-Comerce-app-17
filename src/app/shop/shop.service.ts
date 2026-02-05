@@ -14,7 +14,7 @@ export class ShopService {
 
   }
 
-  getProducts = (brand?: number, type?: number) => {
+  getProducts = (brand?: number, type?: number, sort?:string) => {
 
     let params = new HttpParams();
     if (brand) {
@@ -22,6 +22,9 @@ export class ShopService {
     }
     if (type) {
       params = params.append("type", type.toString())
+    }
+    if(sort){
+      params = params.append("sort",sort);
     }
     return this.http.get<Ipagination>(
       this.baseUrl + 'product',
